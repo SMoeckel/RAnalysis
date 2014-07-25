@@ -14,7 +14,7 @@
 \subsection{General provisions}
 Anvis Group's transfer pricing system for intra-group services and contract R\&D relies on the transactional net margin method. At budget, the arm's length transfer price for these items is determined using a profit mark-up consistent with the mid-point of the respective interquartile range. The actual result is regularly reviewed (at least after 6 months). A transfer pricing adjustment is made whenever the respective service entity's actual profit is not within the corresponding arm's length range. The adjustment is made to the range's upper or lower bound whatever is closest to the actual result achieved.\\[0.2cm]
 The adjustment is determined as retro-active adjustment ensuring that the results actually achieved are within the arm's length range. This is largely consistent with Anvis Group's current practice. In order to charge each recipient with the actual cost incurred on its behalf/the actual benefits received, Anvis Deutschland GmbH (AVS002) issues already debit or credit notes.\\[0.2cm]
-As outlined below, the arm's length ranges reflect period averages. Accordingly, a transfer pricing adjustment back to the closest upper or lower bound can be based on comparable period averages as well. However, this requires provided the corresponding functional period averages for the service entities. The associated administrative burden may be considered too high!\\[0.2cm]
+As outlined below, the arm's length ranges reflect period averages. Accordingly, a transfer pricing adjustment back to the closest upper or lower bound can be based on period averages as well. In order to limit the transfer pricing related worklaod the comparison will be based the respective Anvis entities' annual data.\\[0.2cm]
 The arm's length ranges are to be reviewed regularly.\begin{itemize}
   \item just adding new data (effectively employ a moving average approach)
   \item conduct a completely new comparables search
@@ -30,12 +30,19 @@ In order to limit the transfer pricing related administrative burden it may be s
 \section{The Contract R\&D comparables}
 The data represent a combination of panel and timeseries data. 
 <<echo=FALSE>>=
-library(AVSDAT)
-data(ContRaD)
+load("~/Documents/R workspace/AVS Outside Evidence work/AVSPaperWS.RData")
+.First()
 @
-\begin{center}
+\begin{figure}
 <<fig = TRUE, echo=FALSE>>=
-plot(ContRaD_01b$II,ContRaD_01b$EBITDA)
+plot(ContRaD_01b$Curr,ContRaD_01b$Gprofit, main = "Gross Profit by Country/Currency")
+text(1,min(DKK_Gprofit),DKK_ContRaD_01b$Comp[DKK_ContRaD_01b$Gprofit==min(DKK_Gprofit)],pos=3,cex=0.5)
+text(1,max(DKK_Gprofit),DKK_ContRaD_01b$Comp[DKK_ContRaD_01b$Gprofit==max(DKK_Gprofit)],pos=1,cex=0.5)
+text(1,median(DKK_Gprofit),paste(format(median(DKK_Gprofit), digits = 4), " kEUR"),pos=3,cex=0.5)
+text(2,max(GBP_Gprofit),GBP_ContRaD_01b$Comp[GBP_ContRaD_01b$Gprofit==max(GBP_Gprofit)],pos=3,cex=0.5)
+text(2,min(GBP_Gprofit),GBP_ContRaD_01b$Comp[GBP_ContRaD_01b$Gprofit==min(GBP_Gprofit)],pos=3,cex=0.5)
+text(2,median(GBP_Gprofit),paste(format(median(GBP_Gprofit), digits = 4), " kEUR"),pos=3,cex=0.5)
 @
-\end{center}
+\caption {Test}
+\end{figure}
 \end{document}
